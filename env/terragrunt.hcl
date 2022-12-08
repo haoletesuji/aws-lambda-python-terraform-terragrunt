@@ -1,0 +1,54 @@
+locals {
+  env_vars     = read_terragrunt_config(find_in_parent_folders("env_vars.hcl"))
+  account_vars = read_terragrunt_config(find_in_parent_folders("account.hcl"))
+  region_vars  = read_terragrunt_config(find_in_parent_folders("region.hcl"))
+
+  # Extract the variables we need for easy access
+  aws_access_key_id     = local.account_vars.locals.aws_access_key_id
+  aws_secret_access_key = local.account_vars.locals.aws_secret_access_key
+  aws_session_token     = local.account_vars.locals.aws_session_token
+  aws_region            = local.region_vars.locals.aws_region
+}
+
+inputs = {
+  env        = "${local.env_vars.locals.env}"
+  region     = "${local.aws_region}"
+  access_key = "${local.aws_access_key_id}"
+  secret_key = "${local.aws_secret_access_key}"
+  token      = "${local.aws_session_token}"
+}
+
+generate "common_variables" {
+  path      = "common_variables.tf"
+  if_exists = "overwrite"
+  contents  = file("./common/common_variables.tf")
+}
+
+generate "required_providers" {
+  path      = "required_providers.tf"
+  if_exists = "overwrite"
+  contents  = file("./common/required_providers.tf")
+}
+
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite"
+  contents  = file("./common/provider.tf")
+}
+
+# Generate backend block
+generate "backend" {
+  path      = "backend.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+terraform {
+  backend "s3" {
+    bucket         = "demo-lambda-tfstate"
+    region         = "${local.aws_region}"
+    key            = "${path_relative_to_include()}/terraform.tfstate"
+    encrypt        = true
+    dynamodb_table = "demo-lambda-infra-state-lock"
+  }
+}
+EOF
+}
