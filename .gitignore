@@ -11,6 +11,7 @@
 # Terragrunt
 .terragrunt-cache
 .terraform.lock.hcl
+terragrunt-debug.tfvars.json
 
 # Crash log files
 crash.log
