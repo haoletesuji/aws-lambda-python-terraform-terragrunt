@@ -6,7 +6,7 @@ resource "aws_apigatewayv2_api" "lambda" {
 
 resource "aws_apigatewayv2_stage" "lambda" {
   api_id      = aws_apigatewayv2_api.lambda.id
-  name        = "serverless_lambda_stage"
+  name        = var.stage
   auto_deploy = true
 
   access_log_settings {
@@ -51,4 +51,20 @@ resource "aws_lambda_permission" "api_gw" {
   function_name = var.hello_function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
+}
+
+resource "aws_apigatewayv2_domain_name" "lambda" {
+  domain_name = var.domain_name
+
+  domain_name_configuration {
+    certificate_arn = var.certificate_arn
+    endpoint_type   = "REGIONAL"
+    security_policy = "TLS_1_2"
+  }
+}
+
+resource "aws_apigatewayv2_api_mapping" "lambda" {
+  api_id      = aws_apigatewayv2_api.lambda.id
+  domain_name = aws_apigatewayv2_domain_name.lambda.id
+  stage       = aws_apigatewayv2_stage.lambda.id
 }
