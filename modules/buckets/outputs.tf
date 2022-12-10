@@ -1,5 +1,5 @@
 output "lambda_bucket_id" {
-  description = "The output of the archive file."
+  description = "The name of the bucket that is stores function"
   value       = aws_s3_bucket.lambda.id
 }
 

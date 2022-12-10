@@ -1,5 +1,5 @@
-variable "lambda_relative_path" {
+variable "prefix" {
+  description = "A string to prefix the name with."
   type        = string
-  description = "DO NOT CHANGE. This will be overridden by Terragrunt when needed."
-  default     = "/../"
+  default     = "terraform"
 }

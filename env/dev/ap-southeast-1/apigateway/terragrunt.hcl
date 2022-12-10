@@ -28,11 +28,11 @@ dependency "acm" {
 }
 
 inputs = {
-  hello_invoke_arn    = dependency.lambda.outputs.hello_invoke_arn
-  hello_function_name = dependency.lambda.outputs.hello_function_name
-  stage               = "${local.env_vars.locals.env}"
-  domain_name         = "${local.env_vars.locals.domain}"
-  certificate_arn     = dependency.acm.outputs.certificate_arn
+  integration_uri = dependency.lambda.outputs.hello_invoke_arn
+  function_name   = dependency.lambda.outputs.hello_function_name
+  stage           = "${local.env_vars.locals.env}"
+  domain_name     = "${local.env_vars.locals.domain}"
+  certificate_arn = dependency.acm.outputs.certificate_arn
 }
 
 include {

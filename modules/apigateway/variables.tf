@@ -1,15 +1,15 @@
-variable "hello_invoke_arn" {
-  description = "The output of the archive file."
+variable "integration_uri" {
+  description = "URI of the Lambda function for a Lambda proxy integration."
   type        = string
 }
 
-variable "hello_function_name" {
+variable "function_name" {
   description = "The output of the archive file."
   type        = string
 }
 
 variable "stage" {
-  description = "The output of the archive file."
+  description = "Name of the stage"
   type        = string
 }
 

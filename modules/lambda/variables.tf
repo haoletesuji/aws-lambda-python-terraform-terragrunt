@@ -1,14 +1,20 @@
 variable "lambda_bucket_id" {
+  description = "Name of the bucket to put the file in"
   type        = string
-  description = "DO NOT CHANGE. This will be overridden by Terragrunt when needed."
 }
 
 variable "exec_role_arn" {
+  description = " Amazon Resource Name (ARN) of the function's execution role."
   type        = string
-  description = "DO NOT CHANGE. This will be overridden by Terragrunt when needed."
 }
 
+
 variable "lambda_relative_path" {
+  description = "The path to content to the archive "
   type        = string
-  description = "DO NOT CHANGE. This will be overridden by Terragrunt when needed."
+}
+
+variable "hello_function_name" {
+  description = "Unique name for your Lambda Function."
+  type        = string
 }

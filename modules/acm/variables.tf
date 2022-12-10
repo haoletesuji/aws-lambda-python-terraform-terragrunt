@@ -1,4 +1,4 @@
 variable "domain_name" {
-  description = "The output of the archive file."
+  description = "The domain name (FQDN) in the certificate."
   type        = string
 }

@@ -1,5 +1,5 @@
 resource "random_pet" "lambda" {
-  prefix = "learn-terraform-functions"
+  prefix = var.prefix
   length = 4
 }
 

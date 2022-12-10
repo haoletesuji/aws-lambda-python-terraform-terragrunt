@@ -24,7 +24,7 @@ resource "aws_s3_object" "lambda" {
 }
 
 resource "aws_lambda_function" "hello" {
-  function_name    = "HelloWorld"
+  function_name    = var.hello_function_name
   s3_bucket        = var.lambda_bucket_id
   s3_key           = aws_s3_object.lambda.key
   runtime          = "python3.9"

@@ -1,4 +1,4 @@
 output "certificate_arn" {
-  description = "Base URL for API Gateway stage."
+  description = "ARN of the certificate"
   value       = aws_acm_certificate.cert.arn
 }
