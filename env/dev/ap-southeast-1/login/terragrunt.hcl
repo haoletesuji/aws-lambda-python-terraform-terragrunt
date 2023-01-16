@@ -26,7 +26,9 @@ inputs = {
   lambda_relative_path = "/../../"
   lambda_bucket_id     = dependency.buckets.outputs.lambda_bucket_id
   exec_role_arn        = dependency.iam.outputs.exec_role_arn
-  hello_function_name  = "HelloWorld"
+  function_name        = "login"
+  handler              = "login.lambda_handler"
+  runtime              = "python3.9"
 }
 
 include {

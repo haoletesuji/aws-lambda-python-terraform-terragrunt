@@ -1,11 +1,11 @@
 
-resource "aws_apigatewayv2_api" "lambda" {
-  name          = "serverless_lambda_gw"
+resource "aws_apigatewayv2_api" "apigateway" {
+  name          = "${var.environment}_${var.name}_gw"
   protocol_type = "HTTP"
 }
 
-resource "aws_apigatewayv2_stage" "lambda" {
-  api_id      = aws_apigatewayv2_api.lambda.id
+resource "aws_apigatewayv2_stage" "apigateway_stage" {
+  api_id      = aws_apigatewayv2_api.apigateway.id
   name        = var.stage
   auto_deploy = true
 
@@ -27,44 +27,8 @@ resource "aws_apigatewayv2_stage" "lambda" {
   }
 }
 
-resource "aws_apigatewayv2_integration" "lambda" {
-  api_id             = aws_apigatewayv2_api.lambda.id
-  integration_uri    = var.integration_uri
-  integration_type   = "AWS_PROXY"
-  integration_method = "POST"
-}
-
-resource "aws_apigatewayv2_route" "lambda" {
-  api_id    = aws_apigatewayv2_api.lambda.id
-  route_key = "GET /hello"
-  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
-}
-
 resource "aws_cloudwatch_log_group" "api_gw" {
-  name              = "/aws/api_gw/${aws_apigatewayv2_api.lambda.name}"
+  name              = "/aws/api_gw/${aws_apigatewayv2_api.apigateway.name}"
   retention_in_days = 30
 }
 
-resource "aws_lambda_permission" "api_gw" {
-  statement_id  = "AllowExecutionFromAPIGateway"
-  action        = "lambda:InvokeFunction"
-  function_name = var.function_name
-  principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
-}
-
-resource "aws_apigatewayv2_domain_name" "lambda" {
-  domain_name = var.domain_name
-
-  domain_name_configuration {
-    certificate_arn = var.certificate_arn
-    endpoint_type   = "REGIONAL"
-    security_policy = "TLS_1_2"
-  }
-}
-
-resource "aws_apigatewayv2_api_mapping" "lambda" {
-  api_id      = aws_apigatewayv2_api.lambda.id
-  domain_name = aws_apigatewayv2_domain_name.lambda.id
-  stage       = aws_apigatewayv2_stage.lambda.id
-}

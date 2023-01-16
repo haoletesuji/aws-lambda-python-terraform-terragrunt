@@ -14,7 +14,18 @@ variable "lambda_relative_path" {
   type        = string
 }
 
-variable "hello_function_name" {
+variable "function_name" {
   description = "Unique name for your Lambda Function."
+  type        = string
+}
+
+variable "handler" {
+  description = "Function entrypoint in your code."
+  type        = string
+}
+
+
+variable "runtime" {
+  description = " Identifier of the function's runtime."
   type        = string
 }

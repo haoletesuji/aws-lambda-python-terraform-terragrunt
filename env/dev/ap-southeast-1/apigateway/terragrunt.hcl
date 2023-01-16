@@ -6,33 +6,11 @@ terraform {
   source = "../../../..//modules/apigateway"
 }
 
-dependency "lambda" {
-  config_path = "../lambda"
-
-  mock_outputs_allowed_terraform_commands = ["init", "fmt", "validate", "plan", "show"]
-  mock_outputs_merge_strategy_with_state  = "shallow"
-  mock_outputs = {
-    hello_invoke_arn    = "test"
-    hello_function_name = "test"
-  }
-}
-
-dependency "acm" {
-  config_path = "../acm"
-
-  mock_outputs_allowed_terraform_commands = ["init", "fmt", "validate", "plan", "show"]
-  mock_outputs_merge_strategy_with_state  = "shallow"
-  mock_outputs = {
-    certificate_arn = "test"
-  }
-}
 
 inputs = {
-  integration_uri = dependency.lambda.outputs.hello_invoke_arn
-  function_name   = dependency.lambda.outputs.hello_function_name
-  stage           = "${local.env_vars.locals.env}"
-  domain_name     = "${local.env_vars.locals.domain}"
-  certificate_arn = dependency.acm.outputs.certificate_arn
+  stage       = "${local.env_vars.locals.env}"
+  environment = "${local.env_vars.locals.env}"
+  name        = "serverless_lambda"
 }
 
 include {

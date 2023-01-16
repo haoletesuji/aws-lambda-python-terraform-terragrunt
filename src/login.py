@@ -5,7 +5,7 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-def hello_handler(event, context):
+def lambda_handler(event, context):
     logger.info('lambda_handler is triggered with event: %s', event)
     json_region = os.environ['AWS_REGION']
     return {
@@ -15,6 +15,6 @@ def hello_handler(event, context):
         },
         "body": json.dumps({
             "region ": json_region,
-            "message": "HaoLe"
+            "message": "Login function triggered"
         })
     }
