@@ -29,6 +29,7 @@ inputs = {
   function_name        = "register"
   handler              = "register.lambda_handler"
   runtime              = "python3.9"
+  layers               = []
 }
 
 include {

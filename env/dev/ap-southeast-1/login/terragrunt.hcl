@@ -22,6 +22,16 @@ dependency "iam" {
   }
 }
 
+dependency "shared_layer" {
+  config_path = "../shared_layer"
+
+  mock_outputs_allowed_terraform_commands = ["init", "fmt", "validate", "plan", "show"]
+  mock_outputs_merge_strategy_with_state  = "shallow"
+  mock_outputs = {
+    layer_arn = ""
+  }
+}
+
 inputs = {
   lambda_relative_path = "/../../"
   lambda_bucket_id     = dependency.buckets.outputs.lambda_bucket_id
@@ -29,6 +39,7 @@ inputs = {
   function_name        = "login"
   handler              = "login.lambda_handler"
   runtime              = "python3.9"
+  layers               = [dependency.shared_layer.outputs.layer_arn]
 }
 
 include {
