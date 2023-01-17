@@ -24,13 +24,14 @@ resource "aws_s3_object" "s3_object" {
 }
 
 resource "aws_lambda_function" "lambda_function" {
-  function_name    = var.function_name
-  s3_bucket        = var.lambda_bucket_id
-  s3_key           = aws_s3_object.s3_object.key
-  runtime          = var.runtime
-  handler          = var.handler
-  source_code_hash = data.archive_file.lambda_source_package.output_base64sha256
-  role             = var.exec_role_arn
-  layers           = var.layers
+  function_name     = var.function_name
+  s3_bucket         = var.lambda_bucket_id
+  s3_key            = aws_s3_object.s3_object.key
+  s3_object_version = aws_s3_object.s3_object.version_id
+  runtime           = var.runtime
+  handler           = var.handler
+  source_code_hash  = data.archive_file.lambda_source_package.output_base64sha256
+  role              = var.exec_role_arn
+  layers            = var.layers
 }
 
