@@ -49,3 +49,7 @@ tf.plan
 
 # Ignore local stack data file
 .devcontainer/data
+/src/packages/python/*
+!/src/packages/python/.gitkeep
+
+

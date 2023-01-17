@@ -31,14 +31,18 @@ Basic setup:
 ## Deploys the project
 
 1. Replaces **/src** with the code of your Python App
-2. Creates a bucket to store state files (`demo-lambda-tfstate`). The bucket name is specify in `env/dev/terrgrunt.hcl` line 46.
-3. Creates a DynamoDB table named `terraform-state-lock-dynamo` with hash key is `LockID` and type `S`
-4. Deploys (`dev` environment):
+2. Downdloads required packages
+```sh
+make install
+```
+3. Creates a bucket to store state files (`demo-lambda-tfstate`). The bucket name is specify in `env/dev/terrgrunt.hcl` line 46.
+4. Creates a DynamoDB table named `terraform-state-lock-dynamo` with hash key is `LockID` and type `S`
+5. Deploys (`dev` environment):
 ```sh
 cd ./env/dev/ap-southeast-1
 terragrunt run-all apply
 ```
-5. Gets base url to access api gateway
+6. Gets base url to access api gateway
 ![Base URL](/images/api_gateway_base_url.png)
 
 ## Tests

@@ -3,15 +3,15 @@
 locals {
   # Relative paths change if this configuration is
   # included as a module from Terragrunt.
-  lambda_source_path = "${path.module}${var.lambda_relative_path}src"
-  lambda_output_path = "${path.module}${var.lambda_relative_path}src.zip"
+  lambda_source_path = "${path.module}${var.lambda_relative_path}src/${var.function_name}.py"
+  lambda_output_path = "${path.module}${var.lambda_relative_path}src/${var.function_name}.zip"
 }
 
 # Create an archive form the Lambda source code,
 # filtering out unneeded files.
 data "archive_file" "lambda_source_package" {
   type        = "zip"
-  source_dir  = local.lambda_source_path
+  source_file = local.lambda_source_path
   output_path = local.lambda_output_path
 }
 

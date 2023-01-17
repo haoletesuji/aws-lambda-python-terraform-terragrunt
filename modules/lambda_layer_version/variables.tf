@@ -18,3 +18,8 @@ variable "source_code_relative_path" {
   description = "The path to content to the archive "
   type        = string
 }
+
+variable "path" {
+  description = "The path to content to the archive"
+  type        = string
+}

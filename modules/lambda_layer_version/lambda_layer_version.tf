@@ -3,8 +3,8 @@
 locals {
   # Relative paths change if this configuration is
   # included as a module from Terragrunt.
-  lambda_source_path = "${path.module}${var.source_code_relative_path}src/layers"
-  lambda_output_path = "${path.module}${var.source_code_relative_path}src/layers.zip"
+  lambda_source_path = "${path.module}${var.source_code_relative_path}${var.path}"
+  lambda_output_path = "${path.module}${var.source_code_relative_path}${var.path}.zip"
 }
 
 # Create an archive form the Lambda source code,

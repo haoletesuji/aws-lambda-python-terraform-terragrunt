@@ -15,9 +15,9 @@ dependency "buckets" {
 inputs = {
   source_code_relative_path = "/../../"
   lambda_bucket_id          = dependency.buckets.outputs.lambda_bucket_id
-  layer_name                = "shared_layer"
+  layer_name                = "deployment_package"
   compatible_runtimes       = ["python3.9"]
-  path                      = "src/layers/"
+  path                      = "src/packages/"
 }
 
 include {
