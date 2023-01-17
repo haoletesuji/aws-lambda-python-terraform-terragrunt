@@ -52,3 +52,15 @@ variable "timeout" {
   type        = number
   default     = 30
 }
+
+variable "schedule" {
+  description = "Schedule value for the event that triggers the warmer lambda."
+  type        = string
+  default     = "rate(5 minutes)"
+}
+
+variable "warmup_enabled" {
+  description = "Whether your lambda should be warmed up or not"
+  type        = bool
+  default     = false
+}

@@ -53,7 +53,9 @@ inputs = {
   environment_variables = {
     "ALLOWED_METHODS" = "OPTIONS,POST,GET,PUT,PATCH,DELETE",
   }
-  memory_size = 256
+  memory_size    = 256
+  warmup_enabled = true
+  schedule       = "rate(5 minutes)"
 }
 
 include {
