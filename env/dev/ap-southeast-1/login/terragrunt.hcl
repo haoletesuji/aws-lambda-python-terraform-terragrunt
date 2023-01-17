@@ -50,6 +50,10 @@ inputs = {
   handler              = "login.lambda_handler"
   runtime              = "python3.9"
   layers               = [dependency.shared_layer.outputs.layer_arn, dependency.packages_layer.outputs.layer_arn]
+  environment_variables = {
+    "ALLOWED_METHODS" = "OPTIONS,POST,GET,PUT,PATCH,DELETE",
+  }
+  memory_size = 256
 }
 
 include {

@@ -33,5 +33,10 @@ resource "aws_lambda_function" "lambda_function" {
   source_code_hash  = data.archive_file.lambda_source_package.output_base64sha256
   role              = var.exec_role_arn
   layers            = var.layers
+  timeout           = var.timeout
+
+  environment {
+    variables = var.environment_variables
+  }
 }
 

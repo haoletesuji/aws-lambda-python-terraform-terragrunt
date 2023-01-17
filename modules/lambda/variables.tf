@@ -34,3 +34,21 @@ variable "layers" {
   description = "List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function"
   type        = list(string)
 }
+
+variable "environment_variables" {
+  description = "Environment variables"
+  type        = map(any)
+  default     = {}
+}
+
+variable "memory_size" {
+  description = "Amount of memory in MB your Lambda Function can use at runtime"
+  type        = number
+  default     = 128
+}
+
+variable "timeout" {
+  description = "Amount of time your Lambda Function has to run in seconds."
+  type        = number
+  default     = 30
+}

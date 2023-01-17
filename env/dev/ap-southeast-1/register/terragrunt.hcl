@@ -30,6 +30,9 @@ inputs = {
   handler              = "register.lambda_handler"
   runtime              = "python3.9"
   layers               = []
+  environment_variables = {
+    "ALLOWED_METHODS" = "OPTIONS,POST,GET,PUT,PATCH,DELETE",
+  }
 }
 
 include {
