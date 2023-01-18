@@ -13,6 +13,13 @@ trim_trailing_whitespace = false
 
 [Makefile]
 indent_style = tab
+indent_size = 4
 
 [*.py]
 indent_style = tab
+indent_size = 4
+
+[*.json]
+indent_style = tab
+indent_size = 4
+
