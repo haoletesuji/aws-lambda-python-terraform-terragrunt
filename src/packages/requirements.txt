@@ -1,2 +1,4 @@
 requests
+aws_lambda_powertools
+
 

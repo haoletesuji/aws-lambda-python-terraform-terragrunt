@@ -1,13 +1,13 @@
 import os
 import json
-import logging
+from aws_lambda_powertools import Logger
 import requests
 from shared import header
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger = Logger()
 
 
+@logger.inject_lambda_context
 def lambda_handler(event, context):
     logger.info('lambda_handler is triggered with event: %s', event)
     json_region = os.environ['AWS_REGION']
