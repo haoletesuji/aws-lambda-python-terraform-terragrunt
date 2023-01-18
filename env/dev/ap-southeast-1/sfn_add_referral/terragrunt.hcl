@@ -1,5 +1,5 @@
 locals {
-  template_file_path = "${get_terragrunt_dir()}/state_machine.json.tpl"
+  template_file_path = "${get_terragrunt_dir()}/state_machine.tftpl"
   policy_file_path   = "${get_terragrunt_dir()}/policy.json"
   role_file_path     = "${get_terragrunt_dir()}/role.json"
 }
