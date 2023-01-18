@@ -1,7 +1,7 @@
 resource "aws_iam_role" "role" {
   name = "${var.name}-role"
 
-  assume_role_policy = file(var.role_policy_file_path)
+  assume_role_policy = file(var.role_file_path)
 }
 
 resource "aws_iam_policy" "policy" {
@@ -9,7 +9,7 @@ resource "aws_iam_policy" "policy" {
   policy = file(var.policy_file_path)
 }
 
-resource "aws_iam_role_policy_attachment" "lambda" {
+resource "aws_iam_role_policy_attachment" "role_policy" {
   role       = aws_iam_role.role.name
   policy_arn = aws_iam_policy.policy.arn
 }

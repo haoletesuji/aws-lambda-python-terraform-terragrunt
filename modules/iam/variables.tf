@@ -2,7 +2,7 @@ variable "name" {
   description = "Name of role"
   type        = string
 }
-variable "role_policy_file_path" {
+variable "role_file_path" {
   description = "Path to role policy file"
   type        = string
 }
