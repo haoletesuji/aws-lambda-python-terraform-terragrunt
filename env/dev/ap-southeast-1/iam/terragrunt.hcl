@@ -8,7 +8,7 @@ terraform {
 }
 
 inputs = {
-  name                  = "serverless_lambda"
+  name                  = "serverless-lambda"
   policy_file_path      = local.policy_file_path
   role_policy_file_path = local.role_policy_file_path
 }
