@@ -3,7 +3,7 @@ import os
 
 HEADERS = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "*",
+    "Access-Control-Allow-Headers": "Content-Type,Authorization,x-api-key",
     "Access-Control-Allow-Methods": os.environ.get("ALLOWED_METHODS"),
     "Access-Control-Allow-Credentials": True,
     "Content-Type": "application/json",

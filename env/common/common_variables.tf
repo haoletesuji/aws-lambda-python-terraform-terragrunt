@@ -3,6 +3,11 @@ variable "env" {
   type        = string
 }
 
+variable "project_name" {
+  description = "Name of project"
+  type        = string
+}
+
 variable "region" {
   description = "The current AWS region"
   type        = string

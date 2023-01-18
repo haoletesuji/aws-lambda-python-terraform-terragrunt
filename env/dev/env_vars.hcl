@@ -1,4 +1,4 @@
 locals {
   env = "dev"
-  domain = "tesuji.test.ohdev.online"
+  project_name = "gatekeeper"
 }

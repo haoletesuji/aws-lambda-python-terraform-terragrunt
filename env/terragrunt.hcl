@@ -12,6 +12,7 @@ locals {
 
 inputs = {
   env        = "${local.env_vars.locals.env}"
+  project_name        = "${local.env_vars.locals.project_name}"
   region     = "${local.aws_region}"
   access_key = "${local.aws_access_key_id}"
   secret_key = "${local.aws_secret_access_key}"
